@@ -7,9 +7,9 @@ import (
 )
 
 func TestCountDown(t *testing.T) {
-	t.Run("countdown", func(t *testing.T) {
+	t.Run("spy countdown", func(t *testing.T) {
 
-		sleep := &SpySleeper{}
+		sleep := &SpySleeperOperations{}
 		buffer := &bytes.Buffer{}
 
 		CountDown(buffer, sleep)
@@ -22,8 +22,8 @@ func TestCountDown(t *testing.T) {
 			t.Errorf("want %v, got %v", want, got)
 		}
 
-		if sleep.count != 3 {
-			t.Errorf("the count of sleep invoked is %v, but the wanted values is 3.", sleep.count)
+		if sleep.times != 3 {
+			t.Errorf("the count of sleep invoked is %v, but the wanted values is 3.", sleep.times)
 		}
 	})
 

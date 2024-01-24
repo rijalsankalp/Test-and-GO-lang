@@ -18,24 +18,17 @@ func (d *DefaultSleeper) Sleep() {
 	time.Sleep(1 *time.Second)
 }
 
-
-type SpySleeper struct {
-	count int
-}
-
-func (s *SpySleeper) Sleep() {
-	s.count++
-}
-
 type SpySleeperOperations struct {
 	Count []string
+	times int
 }
 
 func (s *SpySleeperOperations) Sleep() {
 	s.Count = append(s.Count, sleep)
+	s.times ++
 }
 
-func (s * SpySleeperOperations) Write(p []byte) (n int, err error) {
+func (s * SpySleeperOperations) Write(input []byte) (n int, err error) {
 	s.Count = append(s.Count, write)
 	return
 }
